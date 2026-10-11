@@ -1,0 +1,366 @@
+:root {
+  color-scheme: light;
+  --background: #f5f5f7;
+  --surface: #ffffff;
+  --text-primary: #1d1d1f;
+  --text-secondary: #6e6e73;
+  --border: #d2d2d7;
+  --accent: #0068d0;
+  --accent-soft: #eaf4ff;
+  --error: #d70015;
+  --focus: #0071e3;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html {
+  min-width: 320px;
+  background: var(--background);
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  min-height: 100vh;
+  margin: 0;
+  color: var(--text-primary);
+  background: var(--background);
+  font-family: -apple-system, BlinkMacSystemFont, "Apple SD Gothic Neo", "Noto Sans KR", "Segoe UI", sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  word-break: keep-all;
+}
+
+button,
+input {
+  font: inherit;
+}
+
+.app-shell {
+  width: min(100% - 40px, 620px);
+  margin-inline: auto;
+  padding: 72px 0 48px;
+}
+
+.page-header {
+  margin-bottom: 28px;
+}
+
+.eyebrow {
+  margin: 0 0 10px;
+  color: var(--accent);
+  font-size: 13px;
+  font-weight: 700;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+h1 {
+  max-width: 590px;
+  margin: 0;
+  font-size: 36px;
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -0.03em;
+}
+
+.calculator-card {
+  padding: 32px;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  border-radius: 22px;
+  background: var(--surface);
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.04);
+}
+
+.field-group {
+  margin: 0 0 24px;
+}
+
+fieldset {
+  min-width: 0;
+  padding: 0;
+  border: 0;
+}
+
+legend,
+.field-group > label {
+  display: block;
+  margin-bottom: 10px;
+  font-size: 15px;
+  font-weight: 650;
+}
+
+.segmented-control {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 4px;
+  padding: 4px;
+  border-radius: 12px;
+  background: #eeeef0;
+}
+
+.segment {
+  position: relative;
+  min-width: 0;
+}
+
+.segment input {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+}
+
+.segment span {
+  display: flex;
+  min-height: 44px;
+  align-items: center;
+  justify-content: center;
+  border: 2px solid transparent;
+  border-radius: 9px;
+  color: var(--text-secondary);
+  font-size: 15px;
+  font-weight: 600;
+  cursor: pointer;
+  user-select: none;
+}
+
+.segment input:checked + span {
+  color: var(--text-primary);
+  background: var(--surface);
+  box-shadow: 0 1px 4px rgba(0, 0, 0, 0.12);
+}
+
+.segment input:focus-visible + span {
+  border-color: var(--focus);
+  outline: 2px solid rgba(0, 113, 227, 0.25);
+  outline-offset: 1px;
+}
+
+.input-with-unit {
+  display: flex;
+  min-height: 52px;
+  align-items: center;
+  border: 1px solid var(--border);
+  border-radius: 12px;
+  background: var(--surface);
+  transition: border-color 120ms ease, box-shadow 120ms ease;
+}
+
+.input-with-unit:focus-within {
+  border-color: var(--focus);
+  box-shadow: 0 0 0 3px rgba(0, 113, 227, 0.16);
+}
+
+.input-with-unit.has-error {
+  border-color: var(--error);
+}
+
+.input-with-unit.has-error:focus-within {
+  box-shadow: 0 0 0 3px rgba(215, 0, 21, 0.12);
+}
+
+.input-with-unit input {
+  min-width: 0;
+  flex: 1;
+  padding: 13px 8px 13px 16px;
+  border: 0;
+  outline: 0;
+  color: var(--text-primary);
+  background: transparent;
+  font-size: 18px;
+}
+
+.input-with-unit input::placeholder {
+  color: #98989d;
+}
+
+.unit {
+  padding: 0 16px 0 8px;
+  color: var(--text-secondary);
+  font-size: 16px;
+}
+
+.error-message {
+  margin: 8px 2px 0;
+  color: var(--error);
+  font-size: 14px;
+}
+
+.calculate-button {
+  width: 100%;
+  min-height: 52px;
+  border: 0;
+  border-radius: 12px;
+  color: #fff;
+  background: var(--accent);
+  font-size: 17px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: background-color 120ms ease, transform 120ms ease;
+}
+
+.calculate-button:hover {
+  background: #005bb8;
+}
+
+.calculate-button:active {
+  transform: scale(0.99);
+}
+
+.calculate-button:focus-visible {
+  outline: 3px solid rgba(0, 113, 227, 0.35);
+  outline-offset: 3px;
+}
+
+.result-panel {
+  margin-top: 28px;
+  padding-top: 28px;
+  border-top: 1px solid #e5e5e7;
+}
+
+.primary-result {
+  padding: 24px;
+  border-radius: 16px;
+  background: var(--accent-soft);
+  text-align: center;
+}
+
+.primary-result h2 {
+  margin: 0 0 7px;
+  color: #315b81;
+  font-size: 15px;
+  font-weight: 650;
+}
+
+.result-value {
+  margin: 0;
+  color: #003e78;
+  font-variant-numeric: tabular-nums;
+  line-height: 1.1;
+}
+
+.result-value > span:first-child {
+  font-size: clamp(40px, 10vw, 54px);
+  font-weight: 750;
+  letter-spacing: -0.04em;
+}
+
+.result-unit {
+  font-size: 18px;
+  font-weight: 650;
+  white-space: nowrap;
+}
+
+.equivalent-note {
+  margin: 12px 0 0;
+  color: #315b81;
+  font-size: 13px;
+}
+
+.result-details {
+  margin: 24px 0 0;
+}
+
+.result-details > div {
+  display: flex;
+  gap: 16px;
+  align-items: baseline;
+  justify-content: space-between;
+  padding: 14px 0;
+  border-bottom: 1px solid #ededee;
+}
+
+.result-details dt {
+  color: var(--text-secondary);
+  font-size: 14px;
+}
+
+.result-details dd {
+  margin: 0;
+  font-size: 16px;
+  font-weight: 650;
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+  white-space: nowrap;
+}
+
+.basis-note {
+  margin: 16px 0 0;
+  color: var(--text-secondary);
+  font-size: 13px;
+  text-align: center;
+}
+
+.disclaimer {
+  padding: 18px 4px 0;
+  color: var(--text-secondary);
+  font-size: 12px;
+  line-height: 1.55;
+}
+
+.disclaimer p {
+  margin: 3px 0;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+[hidden] {
+  display: none !important;
+}
+
+@media (max-width: 520px) {
+  .app-shell {
+    width: min(100% - 28px, 620px);
+    padding: 36px 0 28px;
+  }
+
+  .page-header {
+    margin-bottom: 22px;
+  }
+
+  h1 {
+    font-size: 29px;
+    line-height: 1.18;
+  }
+
+  .calculator-card {
+    padding: 22px 18px;
+    border-radius: 18px;
+  }
+
+  .primary-result {
+    padding: 22px 12px;
+  }
+
+  .result-details > div {
+    display: block;
+  }
+
+  .result-details dd {
+    margin-top: 4px;
+    text-align: left;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    transition-duration: 0.01ms !important;
+  }
+}
