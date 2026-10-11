@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="description" content="간이식 후 알프로스타딜 기준 용량과 에글란딘 앰플 상당량을 환산하는 사내 업무 지원 도구" />
+    <title>Eglandin® Liver Transplant Dose Calculator</title>
+    <link rel="stylesheet" href="style.css" />
+    <script src="calc.js" defer></script>
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+    <main class="app-shell">
+      <header class="page-header">
+        <p class="eyebrow">Internal use only</p>
+        <h1>Eglandin® Liver Transplant Dose Calculator</h1>
+      </header>
+
+      <section class="calculator-card" aria-labelledby="calculator-heading">
+        <h2 id="calculator-heading" class="sr-only">간이식 용량 계산기</h2>
+
+        <form id="dose-form" novalidate>
+          <fieldset class="field-group transplant-fieldset">
+            <legend>간이식 유형</legend>
+            <div class="segmented-control">
+              <label class="segment">
+                <input type="radio" name="transplantType" value="compatible" checked />
+                <span>ABO 적합</span>
+              </label>
+              <label class="segment">
+                <input type="radio" name="transplantType" value="incompatible" />
+                <span>ABO 부적합</span>
+              </label>
+            </div>
+          </fieldset>
+
+          <div class="field-group">
+            <label for="weight">환자 체중</label>
+            <div id="weight-control" class="input-with-unit">
+              <input
+                id="weight"
+                name="weight"
+                type="text"
+                inputmode="decimal"
+                autocomplete="off"
+                placeholder="예: 70"
+                aria-describedby="weight-error"
+              />
+              <span class="unit" aria-hidden="true">kg</span>
+            </div>
+            <p id="weight-error" class="error-message" role="alert" hidden></p>
+          </div>
+
+          <button class="calculate-button" type="submit">계산하기</button>
+        </form>
+
+        <section id="result" class="result-panel" aria-labelledby="result-heading" aria-live="polite" hidden>
+          <div class="primary-result">
+            <h2 id="result-heading">1일 앰플 환산량</h2>
+            <p class="result-value"><span id="amps-per-day">—</span> <span class="result-unit">amp/day</span></p>
+            <p class="equivalent-note">실제 개봉·조제 앰플 수가 아닌 이론적 앰플 상당량입니다.</p>
+          </div>
+
+          <dl class="result-details">
+            <div>
+              <dt>시간당 최대 기준 투여량</dt>
+              <dd><span id="hourly-dose">—</span> μg/hr</dd>
+            </div>
+            <div>
+              <dt>1일 최대 기준 투여량</dt>
+              <dd><span id="daily-dose">—</span> μg/day</dd>
+            </div>
+            <div>
+              <dt>최대 기준 투여기간</dt>
+              <dd><span id="max-days">—</span>일</dd>
+            </div>
+          </dl>
+
+          <p class="basis-note">0.6 μg/kg/hr · 2 mL amp (10 μg) 기준</p>
+        </section>
+      </section>
+
+      <footer class="disclaimer">
+        <p>정해진 기준의 수학적 환산을 위한 사내 업무 지원 도구입니다.</p>
+        <p>권장 처방량 또는 개별 환자의 실제 투여 지시를 제공하지 않습니다.</p>
+      </footer>
+    </main>
+  </body>
+</html>
