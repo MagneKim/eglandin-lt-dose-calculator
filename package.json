@@ -1,0 +1,12 @@
+{
+  "name": "eglandin-lt-dose-calculator",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Internal calculation aid for Eglandin liver transplant dose conversion.",
+  "scripts": {
+    "test": "node --test tests/*.test.js"
+  },
+  "engines": {
+    "node": ">=18"
+  }
+}
