@@ -56,13 +56,13 @@ test("formats results with grouping and required amp precision", () => {
 });
 
 test("validates empty, alphabetic, malformed, zero, negative, and large values", () => {
-  assert.deepEqual(validateWeight(""), { valid: false, message: "환자 체중을 입력해주세요." });
-  assert.deepEqual(validateWeight("abc"), { valid: false, message: "체중은 숫자로 입력해주세요." });
+  assert.deepEqual(validateWeight(""), { valid: false, message: "환자 체중을 입력해 주세요." });
+  assert.deepEqual(validateWeight("abc"), { valid: false, message: "체중은 숫자로 입력해 주세요." });
   assert.equal(validateWeight("70kg").valid, false);
   assert.equal(validateWeight("1e2").valid, false);
   assert.equal(validateWeight("1..2").valid, false);
-  assert.deepEqual(validateWeight("0"), { valid: false, message: "0보다 큰 체중을 입력해주세요." });
-  assert.deepEqual(validateWeight("-1"), { valid: false, message: "0보다 큰 체중을 입력해주세요." });
+  assert.deepEqual(validateWeight("0"), { valid: false, message: "0보다 큰 체중을 입력해 주세요." });
+  assert.deepEqual(validateWeight("-1"), { valid: false, message: "0보다 큰 체중을 입력해 주세요." });
   assert.equal(validateWeight("Infinity").valid, false);
   assert.equal(validateWeight("NaN").valid, false);
   assert.equal(validateWeight(String(CALCULATION_CONSTANTS.MAX_WEIGHT_KG + 1)).valid, false);
