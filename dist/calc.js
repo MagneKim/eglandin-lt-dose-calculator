@@ -16,33 +16,33 @@
     const value = String(rawValue ?? "").trim();
 
     if (value === "") {
-      return { valid: false, message: "환자 체중을 입력해주세요." };
+      return { valid: false, message: "환자 체중을 입력해 주세요." };
     }
 
     if (/^-\d+(?:\.\d+)?$/.test(value)) {
-      return { valid: false, message: "0보다 큰 체중을 입력해주세요." };
+      return { valid: false, message: "0보다 큰 체중을 입력해 주세요." };
     }
 
     if (!/^\d+(?:\.\d+)?$/.test(value)) {
       const hasLetters = /[a-zA-Z가-힣]/.test(value);
       return {
         valid: false,
-        message: hasLetters ? "체중은 숫자로 입력해주세요." : "입력한 체중을 다시 확인해주세요."
+        message: hasLetters ? "체중은 숫자로 입력해 주세요." : "입력한 체중을 다시 확인해 주세요."
       };
     }
 
     const weightKg = Number(value);
 
     if (!Number.isFinite(weightKg)) {
-      return { valid: false, message: "입력한 체중을 다시 확인해주세요." };
+      return { valid: false, message: "입력한 체중을 다시 확인해 주세요." };
     }
 
     if (weightKg <= 0) {
-      return { valid: false, message: "0보다 큰 체중을 입력해주세요." };
+      return { valid: false, message: "0보다 큰 체중을 입력해 주세요." };
     }
 
     if (weightKg > CALCULATION_CONSTANTS.MAX_WEIGHT_KG) {
-      return { valid: false, message: "입력한 체중을 다시 확인해주세요." };
+      return { valid: false, message: "입력한 체중을 다시 확인해 주세요." };
     }
 
     return { valid: true, weightKg };
